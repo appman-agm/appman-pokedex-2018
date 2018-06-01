@@ -39,7 +39,8 @@ We want you to build a web application with the following requirements:
       attacks damage value without symbol. e.g. 50+ set it to 50, 20* set it to 20, otherwise 0.
   - Happiness level calculation
        ((hp / 10) + (damage /10 ) + 10 - (weak)) / 5
-  Example
+      
+  #### Example
     Pikachu {
       name: 'Pikachu',
       hp: 110,
