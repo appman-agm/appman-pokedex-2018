@@ -75,7 +75,7 @@ We want you to build a web application with the following requirements:
 ## How we score you??!!!
   - If you can complete all the requirements above, We surely score you 100!!!! NO reason!!
     - We will give you all the feedback later ;)
-  - IF YOU CAN COMPLETE ALL THE REQUIREMENTS AND FEEL LIKE SOMETHING IS MISSING, WE HAVE EXTRA SCORE FOR ANY ADDITIONAL THING YOU CAN PROVIDE. (MAXIMUM IS NOT 100!!!)
+  - IF YOU FEEL LIKE SOMETHING IS MISSING, WE HAVE EXTRA SCORE FOR ANY ADDITIONAL THING YOU CAN PROVIDE. (Extra can be unit test, refactoring, performance tuning, etc. REMEMBER MAXIMUM IS NOT 100!!!)
 
 If you have any questions, please do not hesitate to ask us anytime.
 Wish you luck!! :)
