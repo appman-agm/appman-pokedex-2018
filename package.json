@@ -3,12 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
-    "react-scripts": "1.1.4"
+    "react-scripts": "3.0.1"
   },
   "dependencies": {
-    "cors": "^2.8.4",
-    "react": "^16.3.2",
-    "react-dom": "^16.3.2"
+    "cors": "^2.8.5",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "styled-components": "^4.3.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -16,5 +17,17 @@
     "test": "react-scripts test --env=jsdom",
     "api": "node ./src/server.js",
     "eject": "react-scripts eject"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
