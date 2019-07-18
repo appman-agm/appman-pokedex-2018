@@ -171,7 +171,6 @@ export const CardPokemon = ({search='',name='',onDelete,pokedex=false,imageUrl,h
   const happy = calcHap(hpValue,str,weak)
   const upperName = name.toUpperCase()
   const upperSearch = search.toUpperCase()
-  console.log(nationalPokedexNumber)
   return (
     (!search || R.indexOf(upperSearch,upperName)>-1)&&
             <CardWrapper className={pokedex?'pokedex':''}>
@@ -208,7 +207,6 @@ class Modal extends React.Component{
     this.overLay = React.createRef();
   }
   onClose = (e)=>{
-    console.log('this.overLay.current',this.overLay.current)
     if (e.target === this.overLay.current) {
      this.props.closeModal()
     }
@@ -256,7 +254,6 @@ const mergeProps = ({pokemon=[],isOpen,search},{closeModal,removePokedex,searchP
   },
   onAdd:(value)=>{
    const pokemonIChoose =  pokemon.find(({nationalPokedexNumber})=>nationalPokedexNumber===value)
-   console.log(pokemon,pokemonIChoose)
    addPokeDex(pokemonIChoose)
   },
   onChange:(e)=>{

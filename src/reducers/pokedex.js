@@ -4,7 +4,6 @@ import { SET_POKEDEX, REMOVE_POKEDEX } from "../actions";
 export default (state=[],{type,payload})=>{
   switch(type){
    case SET_POKEDEX:
-     console.log('p',payload)
       return [...state,payload]
    case REMOVE_POKEDEX:
       return R.reject(({nationalPokedexNumber})=>nationalPokedexNumber===payload)(state)
