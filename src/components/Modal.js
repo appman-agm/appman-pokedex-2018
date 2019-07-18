@@ -1,10 +1,11 @@
 import React from 'react'
+import * as R from 'ramda'
 import { connect } from 'react-redux';
 import styled from 'styled-components'
 import search from '../search.png'
 import CuteImg from '../cute.png'
 import { getPokemon } from '../selectors';
-import { addPokedex, CloseModal } from '../actions';
+import { addPokedex, CloseModal, searchPokemon, removePokedex } from '../actions';
 const Overlay = styled.div`
 display: block;
   width: 100%;
@@ -55,6 +56,10 @@ const CardWrapper = styled.div`
   background-color: #f3f4f7;
   display:flex;
   margin-bottom: 20px;
+  &.pokedex {
+    width:45%;
+    margin: 20px;
+  }
   .add{
     display:none;
   }
@@ -113,8 +118,11 @@ const ProgressBar = styled.div`
   }
 `
 const CuteImgStyle = styled.img`
-  width: 46px;
+  width: 38px;
   margin: 0 2px;
+  &.pokedex{
+    width:25px;
+  }
 `
 
 const calHp = (v)=>{
@@ -156,13 +164,17 @@ const AddContent = styled.div`
   color:#dc7777;
   justify-self:flex-end;
 `
-export const CardPokemon = ({name,imageUrl,hp,onAdd,convertedRetreatCost,weaknesses,nationalPokedexNumber})=>{
+export const CardPokemon = ({search='',name='',onDelete,pokedex=false,imageUrl,hp,onAdd,convertedRetreatCost,weaknesses,nationalPokedexNumber})=>{
   const hpValue = calHp(hp)
   const str = calcStr(convertedRetreatCost)
   const weak = calcWeak(weaknesses)
   const happy = calcHap(hpValue,str,weak)
+  const upperName = name.toUpperCase()
+  const upperSearch = search.toUpperCase()
+  console.log(nationalPokedexNumber)
   return (
-            <CardWrapper>
+    (!search || R.indexOf(upperSearch,upperName)>-1)&&
+            <CardWrapper className={pokedex?'pokedex':''}>
               <CardPicture>
                   <img src={imageUrl}></img>
               </CardPicture>
@@ -179,30 +191,41 @@ export const CardPokemon = ({name,imageUrl,hp,onAdd,convertedRetreatCost,weaknes
                   </StatContainer>
                   <div style={{marginTop:'10px'}}>
                   {[...Array(happy).keys()].map(item => {
-                    return <CuteImgStyle key={item} src={CuteImg} alt="" />
+                    return <CuteImgStyle className={pokedex?'pokedex':''} key={item} src={CuteImg} alt="" />
                   })}
-                  <CuteImgStyle key={'1'} src={CuteImg} alt="" />
                  </div>
               </DetailWrapper>
-             <AddContent onClick={(e)=>console.log(e.target)||onAdd(nationalPokedexNumber)} className="add">ADD</AddContent>
+             {!pokedex&&<AddContent onClick={(e)=>onAdd(nationalPokedexNumber)} className="add">ADD</AddContent>}
+             {pokedex&&<AddContent onClick={()=>onDelete(nationalPokedexNumber)} className="add">X</AddContent>}
             </CardWrapper>
   )
 }
 
 class Modal extends React.Component{
-
+  constructor(props) {
+    super(props);
+    // create a ref to store the textInput DOM element
+    this.overLay = React.createRef();
+  }
+  onClose = (e)=>{
+    console.log('this.overLay.current',this.overLay.current)
+    if (e.target === this.overLay.current) {
+     this.props.closeModal()
+    }
+  }
+ 
   render(){
     return (
       this.props.isOpen&&
-      <Overlay onClick={this.props.closeModal}>
+      <Overlay ref={this.overLay} onClick={this.onClose}>
         <Wrapper>
         <Container>
-         <SearchBox/>
+         <SearchBox onChange={this.props.onChange}/>
          <Icon src={search}/>
         </Container>
         <CardContainer>
           {
-            this.props.pokemon.map(v=><CardPokemon key={v.id} {...v} onAdd={this.props.onAdd}/>)
+            this.props.pokemon.map(v=><CardPokemon search={this.props.search}  key={v.id} {...v} onAdd={this.props.onAdd}/>)
           }
         </CardContainer>
         </Wrapper>
@@ -213,20 +236,31 @@ class Modal extends React.Component{
 const mapStateToProps = (state)=>({
   pokemon:getPokemon(state),
   isOpen:state.ui.isOpen,
+  search:state.search,
 })
 const mapDispatchToProps = (dispatch)=>({
   addPokeDex:(value)=>dispatch(addPokedex(value)),
-  closeModal:()=>dispatch(CloseModal())
+  closeModal:()=>dispatch(CloseModal()),
+  searchPokemon:(value)=>dispatch(searchPokemon(value)),
+  removePokedex:(value)=>dispatch(removePokedex(value))
 })
-const mergeProps = ({pokemon=[],isOpen},{closeModal,addPokeDex},...ownProps)=>({
+const mergeProps = ({pokemon=[],isOpen,search},{closeModal,removePokedex,searchPokemon,addPokeDex},...ownProps)=>({
   ownProps,
   pokemon,
   isOpen,
   closeModal,
+  search,
+  removePokedex,
+  onRemove:(value)=>{
+    removePokedex(value)
+  },
   onAdd:(value)=>{
    const pokemonIChoose =  pokemon.find(({nationalPokedexNumber})=>nationalPokedexNumber===value)
    console.log(pokemon,pokemonIChoose)
    addPokeDex(pokemonIChoose)
+  },
+  onChange:(e)=>{
+    searchPokemon(e.target.value)
   }
 })
 export default connect(mapStateToProps,mapDispatchToProps,mergeProps)(Modal)

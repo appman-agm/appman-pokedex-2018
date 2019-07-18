@@ -47,3 +47,12 @@ export const CloseModal =()=>{
     })
   }
 }
+
+export const searchPokemon = (v)=>{
+  return dispatch=>{
+    dispatch({
+      type:'SET_SEARCH',
+      payload:v
+    })
+  }
+}

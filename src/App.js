@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import {connect} from 'react-redux'
 import './App.css'
-import { fetchPokemon, OpenModal } from './actions';
+import { fetchPokemon, OpenModal, removePokedex } from './actions';
 import Modal, { CardPokemon } from './components/Modal';
 
 const COLORS = {
@@ -64,9 +64,15 @@ const ButtonAdd = styled.div`
   }
 `
 const OverFLow = styled.div`
-  overflow:scroll;
-  height:85%;
+  flex-wrap: wrap;
+  overflow: scroll;
+  height: 85%;
   z-index: -1;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
 `
 class App extends Component {
   componentDidMount(){
@@ -80,7 +86,7 @@ class App extends Component {
         </WrapperHeader>
         <OverFLow>
           {
-              this.props.pokedex.map(v=><CardPokemon key={v.id} {...v} onAdd={this.props.onAdd}/>)
+              this.props.pokedex.map(v=><CardPokemon onDelete={this.props.removePokedex} pokedex={true} key={v.id} {...v} onAdd={this.props.onAdd}/>)
             }
           </OverFLow>
         <Footer>
@@ -99,6 +105,7 @@ const mapStateToProps = ({pokedex})=>({
 })
 const mapDisPatchToProps =dispatch=>({
   fetchPokemon:()=>dispatch(fetchPokemon()),
-  OpenModal:()=>dispatch(OpenModal())
+  OpenModal:()=>dispatch(OpenModal()),
+  removePokedex:(value)=>dispatch(removePokedex(value))
 })
 export default connect(mapStateToProps,mapDisPatchToProps)(App)
