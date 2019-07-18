@@ -34,8 +34,6 @@ class App extends Component {
   };
 
   onChange = (e) => {
-    console.log('cff', e.target.value)
-    console.log('find', this.state)
     this.setState({ valueFilter: e.target.value})
 
   }
