@@ -30,15 +30,15 @@ We want you to build a web application with the following requirements:
 ### 3. How to calculate `HP level`, `Strength level`, `Weakness level` and `Happiness level`.
 
   - HP level calculation
-      maximum is 100. if value is higher than 100 set it to 100, otherwise 0.
+      - maximum is 100. if value is higher than 100 set it to 100, otherwise 0.
   - Strength level calculation
-      multiply by 50, maximum is 100. e.g. if value is 1 set it to 50, 2 set it to 100, otherwise 0.
+      - use `attacks` length to multiply by 50, maximum is 100. e.g. if value is 1 set it to 50, 2 set it to 100, otherwise 0.
   - Weakness level calculation
-      multiply by 100, maximum is 100. e.g. if value is 1 set it to 100, otherwise 0.
+      - use `weaknesses` length multiply by 100, maximum is 100. e.g. if value is 1 set it to 100, otherwise 0.
   - Damage calculation
-      attacks damage value without symbol. e.g. 50+ set it to 50, 20* set it to 20, otherwise 0.
+      - use `damage` value without symbol of all attacks skill. e.g. 50+ set it to 50, 20* set it to 20, otherwise 0.
   - Happiness level calculation
-       ((hp / 10) + (damage /10 ) + 10 - (weak)) / 5
+      - ((HP / 10) + (Damage /10 ) + 10 - (Weakness)) / 5
       
   #### Example
     Pikachu {
@@ -55,10 +55,10 @@ We want you to build a web application with the following requirements:
   
     Output {
       hp: 100,
-      atk: '100%',
-      weak: '50%',
+      strength: '100%',
+      weakness: '50%',
       damage: 60,
-      level: 5
+      happiness: 5
     }
 ### 4. Interactive MockUp (as a .gif file)
 
