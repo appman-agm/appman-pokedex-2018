@@ -1,20 +1,33 @@
 {
-  "name": "appman-exam-2018",
-  "version": "0.1.0",
+  "name": "appman-pokedex-2018",
+  "version": "0.2.0",
   "private": true,
-  "devDependencies": {
-    "react-scripts": "1.1.4"
-  },
   "dependencies": {
     "cors": "^2.8.4",
-    "react": "^16.3.2",
-    "react-dom": "^16.3.2"
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2",
+    "react-scripts": "3.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "react-scripts test",
     "api": "node ./src/server.js",
     "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
