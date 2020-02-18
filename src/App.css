@@ -1,0 +1,218 @@
+div,
+button {
+  font-family: 'Atma', cursive;
+}
+
+input {
+  font-family: 'Gaegu', cursive;
+}
+
+h1 {
+  text-align: center;
+}
+
+#root {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#bottom_bar {
+  background-color: #ec5656;
+  height: 100px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+#bottom_bar_button {
+  background-color: #ec5656;
+  border: none;
+  height: 100px;
+  width: 100px;
+  position: relative;
+  bottom: 50px;
+  left: 462px;
+  border-radius: 100%;
+  font-size: 60px;
+  color: #ffffff;
+}
+
+#modal_container {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 1024px;
+  height: 768px;
+  background-color: #000000a3;
+  overflow: auto;
+  z-index: 1;
+}
+
+#modal_content {
+  margin: 24px auto;
+  width: 976px;
+  height: 720px;
+  background-color: #ffffff;
+  padding: 8px;
+  overflow: auto;
+}
+
+#modal_search_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #e6e6e6;
+}
+
+#modal_search {
+  font-size: 32px;
+  padding: 8px;
+  box-sizing: border-box;
+  width: 100%;
+  border: none;
+
+  background: url('./search.png') no-repeat scroll 7px 7px;
+}
+
+#model_search_icon {
+  width: 48px;
+  height: 48px;
+}
+
+.card_container {
+  background-color: #f3f4f7;
+  padding: 16px;
+  margin: 16px 8px;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.card_image {
+  display: block;
+  max-width: 200px;
+  max-height: 200px;
+  width: auto;
+  height: auto;
+}
+
+.card_stats_detail {
+  padding: 0 24px;
+}
+
+.card_stats_detail > h2 {
+  font-family: 'Gaegu', cursive;
+  font-size: 32px;
+  margin: 16px 0;
+}
+
+.stat_item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  width: 300px;
+}
+
+.stat_bar {
+  height: 30px;
+  width: 200px;
+  background-color: #f3701a;
+  border-radius: 20px;
+}
+
+.stat_happiness_container {
+  margin: 8px 0;
+}
+
+.happiness_icon {
+  max-width: 50px;
+}
+
+.card_stats_left {
+  display: flex;
+}
+
+.card_stats {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.add_button {
+  border: none;
+  height: 50px;
+  background-color: transparent;
+  font-size: 36px;
+  cursor: pointer;
+  color: #dc7777;
+  display: none;
+}
+
+.card_container:hover .add_button {
+  display: block;
+}
+
+.my_card_outer_container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 250px;
+  grid-gap: 16px;
+  height: 575px;
+  overflow: auto;
+}
+
+.my_card_container {
+  background-color: #f3f4f7;
+  display: flex;
+  justify-content: space-between;
+}
+
+.my_card_stats {
+  display: flex;
+}
+
+.my_card_image {
+  width: 143px;
+  height: 200px;
+}
+
+.my_card_stats_details {
+  margin-left: 16px;
+}
+
+.remove_button {
+  border: none;
+  height: 50px;
+  background-color: transparent;
+  font-size: 36px;
+  cursor: pointer;
+  color: #dc7777;
+  display: none;
+}
+
+.my_stat_item {
+  display: grid;
+  grid-template-columns: 80px auto;
+  margin-bottom: 8px;
+}
+
+.my_stat_bar {
+  width: 100%;
+  height: 30px;
+  background-color: #f3701a;
+  border-radius: 20px;
+}
+
+.my_card_container:hover .remove_button {
+  display: block;
+}
+
+.my_card_stats_details > h2 {
+  font-family: 'Gaegu', cursive;
+  font-size: 32px;
+  margin: 16px 0;
+}
