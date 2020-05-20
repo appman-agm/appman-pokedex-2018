@@ -5,7 +5,7 @@ import { Provider } from 'react-redux'
 import { store } from './store'
 import AppContainer from './modules/app/containers/AppContainer/AppContainer'
 import { Alert } from './components/Alert'
-
+import ListPocketContainer from './modules/list-pocket/containers/ListPocketContainer'
 
 class App extends Component {
   
@@ -18,12 +18,10 @@ class App extends Component {
   }
 
   handleCloseModal = () => {
-    console.log('ss')
     this.setState({ isShowModalCardList : false})
   }
 
   handleOpenModal = () => {
-    console.log('22')
     this.setState({ isShowModalCardList : true})
   }
 
@@ -35,7 +33,6 @@ class App extends Component {
       handleCloseModal,
       handleOpenModal 
     } = this
-console.log('Footer', isShowModalCardList)
 
     return (
       <Provider store={store}>
@@ -51,9 +48,11 @@ console.log('Footer', isShowModalCardList)
             x
           </WrapperButtonClose>
         </WrapperTop>
-        11111
+        <WrapperList>
+          <ListPocketContainer/>
+        </WrapperList>
       </Alert>
-}
+        }
       </div>
       </Provider>
     )
@@ -68,10 +67,10 @@ const WrapperTop = styled.div`
 `
 
 const WrapperSearch = styled.div`
-  width: 98%;
+  width: 97%;
   display: flex;
   justify-content: center;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   input {
     padding: 0px 5px;
     font-size: 14px;
@@ -87,9 +86,14 @@ const WrapperButtonClose = styled.div`
   justify-content: flex-end;
   font-size: 30px;
   line-height: 1;
-  width: 2%;
+  width: 3%;
   :hover {
     cursor: pointer;
   }
+`
+const WrapperList = styled.div`
+  overflow: auto;
+  /* ต้องใช้  max-height: 100%; แต่ติดปัญหาครับ */
+  max-height: 600px;
 `
 

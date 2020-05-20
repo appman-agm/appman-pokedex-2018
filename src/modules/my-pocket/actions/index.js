@@ -1,1 +1,1 @@
-export * from './pocket-action'
+export * from './my-pocket-action'
