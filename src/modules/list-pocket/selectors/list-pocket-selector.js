@@ -54,8 +54,6 @@ export const getWeakSelector = createSelector(
                 return {...card, weak: 0}
             }
         })
-console.log('daa', mapCardInfo)
-
         return mapCardInfo
     }
 )
@@ -93,8 +91,7 @@ export const getMapDataIntoCardSelector = createSelector(
             return {...card, happiness: 5, happinessArray:  arrays}
              
          })
-         console.log('mapCardInfo', mapCardInfo)
-         
+
          return mapCardInfo
      }
 )
