@@ -19,4 +19,8 @@ Header.propTypes = {
 const WrapperTitle = styled.div`
     display: flex;
     justify-content: center;
+    > h1 {
+
+        padding: 20px 10px 10px 10px;
+    }
 `

@@ -1,6 +1,6 @@
 import {
     LOAD_CARD_INFO_SUCCESS,
-    LOAD_CARD_INFO_FAIL
+    LOAD_CARD_INFO_FAIL,
   } from '../constants/pockket-const'
 
   import { remoteMoteApi } from '../../../remote-api'

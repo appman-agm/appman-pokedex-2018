@@ -3,3 +3,4 @@ export const LOAD_CARD_INFO_FAIL ='LOAD_CARD_INFO_FAIL'
 
 
 export const ADD_CARD ='ADD_CARD'
+export const DELETE_CARD ='DELETE_CARD'

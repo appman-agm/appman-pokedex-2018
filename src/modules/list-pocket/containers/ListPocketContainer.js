@@ -1,37 +1,43 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { bindActionCreators } from 'redux'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { loadCardinfo, addCardAction } from '../actions'
+import { size } from 'lodash'
 import { 
-    getMapDataIntoCardSelector,
+  getMapDataIntoCardSelector,
+  getFlagSelector,
+  getCardSelector,
  } from '../selectors'
 import { createStructuredSelector } from 'reselect'
-import styled from 'styled-components'
 import { List } from '../components/List'
 
 class ListPocketContainer extends Component {
 
 componentDidMount () {
-    const { props: { loadCardinfo }} = this
-    loadCardinfo()
+    const { props: { loadCardinfo, cardInfo }} = this
+    console.log('size(cardInfo)', size(cardInfo))
+    
+    if(size(cardInfo) === 0) {
+      loadCardinfo()
+    }
 }
 
-handleButtonAdd = () => {
-    const { addCard } = this.props
-    addCard()
+handleButtonAdd = (id) => {
+    const { addCard, cardMapdata } = this.props
+    
+    addCard(id, cardMapdata)
 }
 
 render () {
     const {
         props: {
-            mapData
+          mapData,
         },
-        // handleButtonAdd,
+        handleButtonAdd,
     } = this
-    
     return (
-        <WrapperList>
+        <Fragment>
        { mapData.map((card, key) => (
           <List
             id={ card.id }
@@ -41,13 +47,13 @@ render () {
             str={ card.str}
             weak={ card.weak}
             happinessArray={ card.happinessArray }
+            handleButtonAdd={handleButtonAdd}
           />
-          
         )) }
-          </WrapperList>
+          </Fragment>
     )
     
-}
+  }
 }
 
 export const mapDispatchToProps = (dispatch) => bindActionCreators({
@@ -55,17 +61,17 @@ export const mapDispatchToProps = (dispatch) => bindActionCreators({
     addCard: addCardAction,
   }, dispatch)
   const mapStateToProps = (state, props) => createStructuredSelector({
-    mapData: getMapDataIntoCardSelector,
-
+    mapData: getFlagSelector,
+    cardMapdata: getMapDataIntoCardSelector,
+    cardInfo: getCardSelector
   })(state, props)
 
   ListPocketContainer.propTypes = {
     loadCardinfo: PropTypes.func,
     addCard: PropTypes.func,
     mapData: PropTypes.array,
-}
+    cardMapdata: PropTypes.array,
+    cardInfo: PropTypes.object,
+  }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListPocketContainer)
-
-const WrapperList = styled.div`
-`

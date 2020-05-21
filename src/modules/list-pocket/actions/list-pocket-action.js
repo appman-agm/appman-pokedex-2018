@@ -2,6 +2,7 @@ import {
     LOAD_CARD_INFO_SUCCESS,
     LOAD_CARD_INFO_FAIL,
     ADD_CARD,
+    DELETE_CARD,
   } from '../constants/list-pockket-const'
 
   import { remoteMoteApi } from '../../../remote-api'
@@ -28,9 +29,22 @@ export const loadCardinfoFail = (error) => ({
     }
 })
 
-export const addCardAction = () => ({
-    type:ADD_CARD
+export const addCardAction = (id, cardAddFlag ) => ({
+    type:ADD_CARD,
+    payload: {
+        id,
+        cardAddFlag,
+    }
 })
+
+export const deleteCardAction = (id, deleteMyPocket ) => ({
+    type: DELETE_CARD,
+    payload: {
+        id,
+        deleteMyPocket
+    }
+})
+
 
 
 

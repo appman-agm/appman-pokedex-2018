@@ -2,7 +2,7 @@ import { LOAD_CARD_INFO_SUCCESS } from '../constants/pockket-const'
 
 
 const initialState = {
-     cardInfo: {}
+     cardInfo: {},
 }
 
 

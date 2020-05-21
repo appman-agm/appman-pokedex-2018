@@ -1,15 +1,11 @@
-import { createSelector } from 'reselect'
+import { createSelector } from 'reselect'   
+ import { 
+    getCardSelector,
+ } from '../../list-pocket/selectors'
 
-// export const getHeaderSearchData = state => state.getIn(['app', 'headerSearch'])
 
+ export const getFlagMyPocketSelector = createSelector(
+    getCardSelector,
+    (flags) => flags.filter( card => card.selectCard === true )
+)
 
-// export const isMemberConnectedSelector = createSelector(
-//     memberDetailsStore,
-//     memberInfo => {
-//       if( memberInfo.get('memberInfo', Map()) ) {
-//         const member = memberInfo.get('memberInfo', Map()).toJS()
-//         return member
-//       }
-//     }
-//   )
-  

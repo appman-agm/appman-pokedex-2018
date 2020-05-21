@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import ProgressBar from 'react-bootstrap/ProgressBar'
 
-export const List = ({id,imgCard, name, hp, str, weak, happiness, happinessArray, handleButtonAdd}) => (
+export const ListMyPocket = ({id, imgCard, name, hp, str, weak, happiness, happinessArray, handleButtonDelete}) => (
     <Fragment>
         <Wrapper>
             <WrapperImg>
@@ -53,8 +53,8 @@ export const List = ({id,imgCard, name, hp, str, weak, happiness, happinessArray
                 </WrapperHappiness>        
             </WrapperContent>
             <WrapperButtonAdd>
-                <div id='button-add' onClick={() => handleButtonAdd(id)} >
-                    Add
+                <div id='button-add' onClick={() => handleButtonDelete(id)}>
+                    X
                 </div>
             </WrapperButtonAdd>
 
@@ -62,7 +62,7 @@ export const List = ({id,imgCard, name, hp, str, weak, happiness, happinessArray
     </Fragment>
 )
 
-List.propTypes = {
+ListMyPocket.propTypes = {
     imgCard: PropTypes.string,
     name: PropTypes.string,
     str: PropTypes.number,
@@ -71,15 +71,14 @@ List.propTypes = {
     happinessArray: PropTypes.array,
     handleButtonAdd: PropTypes.func,
     id: PropTypes.string,
+    handleButtonDelete: PropTypes.func,
 }
 
 const Wrapper = styled.div`
-  display: flex;
-  width: 100%;
+  display: inline-flex;
   box-shadow: 1px 1px 1px 1px #d5d6dc;
-  padding: 10px 10px 10px 10px;
-
-  margin-bottom: 20px;
+  padding: 10px;
+  margin: 10px;
   background: #f3f4f7;
   &:hover {
     box-shadow: 1px 1px 1px 1px #aeaeae;
@@ -92,18 +91,15 @@ const Wrapper = styled.div`
 `
 
 const WrapperImg = styled.div`
-width: 20%;
     img {
         width: 150px;
     }
 `
 
 const WrapperContent = styled.div`
-width: 65%;
-margin-left: 20px;
+margin-left: 10px;
 `
 const WrapperButtonAdd = styled.div`
-    width: 10%;
     text-align: center;
     font-size: 25px;
     color: #dc7777;
@@ -129,7 +125,7 @@ margin-right: 20px;
 const WrapperHappiness = styled.div`
     margin-top: 20px;
     img{
-        width: 40px;
+        width: 41px;
         height: 60px;
         padding-right: 5px;
     }
@@ -151,10 +147,10 @@ margin-right: 20px;
  }
 `
 const WrapperTitle = styled.div`
-width: 20%;
+width: 35%;
 `
 const WrapperProcessBar = styled.div`
-    width: 50%;
+    width: 70%;
     .progress {
         height: 20px;
     }

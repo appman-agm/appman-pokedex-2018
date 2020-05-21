@@ -1,17 +1,16 @@
 import { createSelector } from 'reselect'
 import { get, size } from 'lodash'
 
-export const cardInfoStore = state =>  get(state, 'listPocket')
+export const cardInfoStore = state =>  get(state, 'listPocket', {})
 
 
 export const getCardSelector = createSelector(
     cardInfoStore,
-    cardInfo => get(cardInfo, 'cardInfo.cards', { })
+    cardInfo => get(cardInfo, 'cardInfo.cards', [])
 )
-
-export const getFlagAddCardSelector = createSelector(
+export const getIdCardSelector = createSelector(
     cardInfoStore,
-    cardInfo => get(cardInfo, 'addCard', false)
+    cardInfo => get(cardInfo, 'ids', [])
 )
 
 export const getHpSelector = createSelector(
@@ -75,8 +74,7 @@ export const getDamageSelector = createSelector(
 
 export const getMapDataIntoCardSelector = createSelector(
     getDamageSelector,
-    getFlagAddCardSelector,
-    (cards, flag) => { 
+    (cards) => { 
         const mapCardInfo = cards.map((card) => {
 
             // logic incorrect???
@@ -91,9 +89,14 @@ export const getMapDataIntoCardSelector = createSelector(
             return {...card, happiness: 5, happinessArray:  arrays}
              
          })
-
          return mapCardInfo
      }
 )
+
+export const getFlagSelector = createSelector(
+    getMapDataIntoCardSelector,
+    (cards) => cards.filter( card => card.selectCard === false )
+)
+
 
 
