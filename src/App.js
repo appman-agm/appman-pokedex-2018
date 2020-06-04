@@ -17,12 +17,12 @@ const styles = {
     height: 600,
   },
   Modal: {
-    margin: "auto",
-    marginTop: 120,
-    marginLeft: 160,
-    marginRight: 160,
-    
-    outline: "none"
+    // marginLeft: "33%",
+    margin: "0 auto",
+    maxHeight: 400,
+    maxWidth: 875,
+    outline: 0,
+    position: "absolute",
   },
   Header: {
     textAlign: "center",
@@ -85,9 +85,10 @@ class App extends Component {
     let array = dataRes.cards;
     let selectedarray = this.state.selected;
 
+    const results = array.filter(
+      ({ id: id1 }) => !selectedarray.some(({ id: id2 }) => id2 === id1)
+    );
     
-    const results = array.filter(({ id: id1 }) => !selectedarray.some(({ id: id2 }) => id2 === id1));
-    console.log(results);
 
     this.setState({ list: results });
   };
@@ -129,12 +130,9 @@ class App extends Component {
         <Modal
           open={this.state.modal}
           onClose={this.handleClose}
-          aria-labelledby="simple-modal-title"
-          aria-describedby="simple-modal-description"
           style={styles.Modal}
-          disableAutoFocus={true}
         >
-          <DialogContent>
+          <div style={{ marginTop: 100 }}>
             <ListPokemon
               list={this.state.list}
               filterList={this.state.filterList}
@@ -142,7 +140,7 @@ class App extends Component {
               deletedPokemonOnSelect={this.deletedPokemonOnSelect}
               onSelectCard={this.onSelectCard}
             />
-          </DialogContent>
+          </div>
         </Modal>
         <h1 style={styles.Header}>My List</h1>
         {this.renderMyList()}

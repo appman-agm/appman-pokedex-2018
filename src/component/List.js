@@ -21,7 +21,7 @@ class PokemonList extends Component {
   constructor() {
     super();
     // Don't do this!
-    this.state = { list: [], search: "", filter: [] };
+    this.state = { search: "" };
   }
 
   renderList = () => {
@@ -30,38 +30,36 @@ class PokemonList extends Component {
         ? this.props.list
         : this.props.filterList;
     console.log(this.state.search);
-    if (filterList.length === 0 ) {
+    if (filterList.length === 0) {
       return (
         <Paper style={styles.Paper}>
-          <h1>No Card found</h1>
+          <h1 style={{ textAlign: "center" }}>No Card found</h1>
         </Paper>
       );
     } else {
       return (
-        <div>
-          
-            <List>
-              {filterList.map((item) => {
-                return (
-                  <div
-                    onMouseOver={this.changeBG}
-                    onMouseOut={this.changeBGack}
+        <>
+          <List>
+            {filterList.map((item) => {
+              return (
+                <div
+                  onMouseOver={this.changeBG}
+                  onMouseOut={this.changeBGack}
+                  key={item.id}
+                >
+                  <Card
+                    item={item}
                     key={item.id}
-                  >
-                    <Card
-                      item={item}
-                      key={item.id}
-                      setSelected={this.props.setSelected}
-                      deletedPokemonOnSelect={this.props.deletedPokemonOnSelect}
-                      onSelectCard={this.props.onSelectCard}
-                      type="add"
-                    />
-                  </div>
-                );
-              })}
-            </List>
-          
-        </div>
+                    setSelected={this.props.setSelected}
+                    deletedPokemonOnSelect={this.props.deletedPokemonOnSelect}
+                    onSelectCard={this.props.onSelectCard}
+                    type="add"
+                  />
+                </div>
+              );
+            })}
+          </List>
+        </>
       );
     }
   };
@@ -79,13 +77,12 @@ class PokemonList extends Component {
               </InputAdornment>
             ),
           }}
-          id="outlined-basic"
+          
           label="Search"
           variant="outlined"
           style={styles.TextField}
           onChange={(e) => {
             this.setState({ search: e.target.value });
-            console.log(e.target.value);
             this.props.searchPokemon(e);
           }}
         />

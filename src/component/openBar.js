@@ -5,15 +5,16 @@ const OpenBar = (props) => {
     borderBar: {
       width: "100%",
       height: "10%",
-      backgroundColor: "#ec5656",
+      backgroundColor: "#dc7777",
       position: "absolute",
       bottom: 0,
     },
     Addbutton: {
       width: "13%",
-      height: "13%",
+      height: "15%",
       backgroundColor: "#dc7777",
       // position: "absolute",
+      boxShadow: "0px -10px #ec5656",
       bottom: 0,
       borderRadius: "50%",
 
